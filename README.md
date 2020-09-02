@@ -1,6 +1,4 @@
-# Projeto VUE - estudo
-
-### **Projeto para desenvolver habilidades em [VUE](https://vuejs.org/)**
+### **Projeto de estudo para desenvolver habilidades em [VUE](https://vuejs.org/)**
 
 Tem como ideia inicial gerenciar e salvar conteúdos online em formato texto, como artigos. Ajudará a organizar o estudo sobre os assuntos de interesse, e planejar a ampliação da aprendizagem a partir de temas derivados das leituras iniciais.
 
