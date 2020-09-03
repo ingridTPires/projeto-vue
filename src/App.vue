@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <Home />
+    <Conteudo />
   </div>
 </template>
 
 <script>
-import Home from "./components/Home.vue";
+import Conteudo from "./components/Conteudo.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default {
   name: "App",
   components: {
-    Home,
+    Conteudo,
   },
 };
 </script>
