@@ -1,19 +1,31 @@
 <template>
-  <div id="app">
-    <Conteudo />
-  </div>
+    <div id="app">
+        <Conteudo
+            :conteudo="conteudo"
+            @salvar="salvarConteudo" />
+    </div>
 </template>
 
 <script>
-import Conteudo from "./components/Conteudo.vue";
-import "bootstrap/dist/css/bootstrap.min.css";
+    import Conteudo from "./components/Conteudo.vue";
+    import "bootstrap/dist/css/bootstrap.min.css";
 
-export default {
-  name: "App",
-  components: {
-    Conteudo,
-  },
-};
+    export default {
+        name: 'App',
+        data () {
+            return {
+                conteudo: undefined
+            }
+        },
+        components: {
+            Conteudo,
+        },
+        methods: {
+            salvarConteudo (value) {
+                alert(`Evento para salvar ${value.titulo}`)
+            }
+        }
+    };
 </script>
 
 <style></style>
