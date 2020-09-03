@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <Home/>
+    <Home />
   </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import Home from "./components/Home.vue";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Home
-  }
-}
+    Home,
+  },
+};
 </script>
 
-<style>
-#app {
-}
-</style>
+<style></style>
