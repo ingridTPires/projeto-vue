@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="container">
-        <form>
+        <form @submit="salvar()">
             <h2>Registro de conteúdo</h2>
             <br />
             <div class="form-group row">
@@ -19,7 +19,7 @@
                 <label class="col-sm-2 ">URL:</label>
                 <div class="col-sm-10"><input type="text" class="form-control" v-model="conteudoAtual.url" /></div>
             </div>
-            <button type="" class="btn btn-primary float-right" @click="salvar()">Salvar</button>
+            <button type="submit" class="btn btn-primary float-right">Salvar</button>
         </form>
     </div>
 </template>
