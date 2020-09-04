@@ -20,11 +20,11 @@ export default {
   },
   methods: {
     salvarConteudo(value) {
-      alert(`Evento para salvar ${value.titulo}`);
-
       this.$http
         .post("http://localhost:3000/conteudos", value)
         .then((res) => res.json());
+
+      alert(`Conteúdo "${value.titulo}" salvo!`);
     },
   },
 };
