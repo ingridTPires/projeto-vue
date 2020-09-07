@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div class="container">
     <form>
       <h2>Registro de conteúdo</h2>
@@ -29,10 +29,3 @@ export default {
   props: {},
 };
 </script>
-
-<style scoped>
-.container {
-  width: 40%;
-  margin: 20px auto 0px auto;
-}
-</style>

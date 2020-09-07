@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div id="app">
     <Conteudo />
   </div>
@@ -16,4 +16,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.container {
+  width: 40%;
+  margin: 20px auto 0px auto;
+}
+</style>
