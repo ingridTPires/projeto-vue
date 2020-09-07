@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div class="container">
     <form>
       <h2>Registro de conteúdo relacionado</h2>
