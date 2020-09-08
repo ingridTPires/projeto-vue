@@ -1,17 +1,18 @@
 <template lang="html">
   <div id="app">
-    <Conteudo />
+    <Navegacao />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Conteudo from "./components/Conteudo.vue";
+import Navegacao from "./components/Navegacao";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default {
   name: "App",
   components: {
-    Conteudo,
+    Navegacao,
   },
 };
 </script>
