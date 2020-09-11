@@ -4,24 +4,30 @@ Tem como ideia inicial gerenciar e salvar conteúdos online em formato texto, co
 
 A princípio, os temas derivados serão organizados como uma "To do list", onde será possível acompanhar o progresso de conhecimento sobre as leituras.
 
-***
+**[Link para app teste - firebase](https://estudo-vue-project.web.app/)**
+
+---
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```
