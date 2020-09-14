@@ -25,9 +25,7 @@
         },
         methods: {
             async getConteudos () {
-                var conteudosRef = await firebase
-                    .firestore()
-                    .collection("conteudos");
+                var conteudosRef = await firebase.conteudos;
 
                 conteudosRef.onSnapshot(snap => {
                     this.conteudos = [];
