@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-    <form @submit="salvar()">
+    <form @submit.prevent="salvar()">
       <h2>Registro de conteúdo</h2>
       <br />
       <div class="form-group row">

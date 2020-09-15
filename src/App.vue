@@ -21,6 +21,7 @@
                     .add(value)
                     .then(() => {
                         alert(`Conteúdo "${value.titulo}" salvo!`);
+                        this.$router.push("conteudos");
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);
