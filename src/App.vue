@@ -18,7 +18,7 @@
         methods: {
             salvar (value) {
                 firebase.conteudos
-                    .add({ value })
+                    .add(value)
                     .then(() => {
                         alert(`Conteúdo "${value.titulo}" salvo!`);
                     })
