@@ -8,6 +8,7 @@
 <script>
     import Navegacao from "./components/Navegacao";
     import "bootstrap/dist/css/bootstrap.min.css";
+    import firebase from "./firebaseConfig";
 
     export default {
         name: "App",
@@ -16,7 +17,7 @@
         },
         methods: {
             salvar (value) {
-                this.firebase.conteudos
+                firebase.conteudos
                     .add({ value })
                     .then(() => {
                         alert(`Conteúdo "${value.titulo}" salvo!`);
