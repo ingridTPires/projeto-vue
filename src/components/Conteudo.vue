@@ -40,29 +40,30 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary float-right">Salvar</button>
+        <a class="btn btn-secondary float-right" @click="$router.go(-1)">Voltar</a>
     </form>
   </div>
 </template>
 
 <script>
-export default {
-  props: {
-    conteudo: {
-      titulo: "",
-      autor: "",
-      assunto: "",
-      url: "",
-    },
-  },
-  data() {
-    return {
-      conteudoAtual: { ...this.conteudo },
+    export default {
+        props: {
+            conteudo: {
+                titulo: "",
+                autor: "",
+                assunto: "",
+                url: "",
+            },
+        },
+        data () {
+            return {
+                conteudoAtual: { ...this.conteudo },
+            };
+        },
+        methods: {
+            salvar () {
+                this.$emit("salvar", this.conteudoAtual);
+            },
+        },
     };
-  },
-  methods: {
-    salvar() {
-      this.$emit("salvar", this.conteudoAtual);
-    },
-  },
-};
 </script>

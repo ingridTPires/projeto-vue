@@ -3,6 +3,7 @@
     <li class="collection-item" v-for="conteudo in conteudos" :key="conteudo.id">
         {{conteudo.titulo}}
     </li>
+    <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
   </div>
 </template>
 
