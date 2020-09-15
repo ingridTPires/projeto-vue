@@ -12,6 +12,7 @@
         <div class="col-sm-8"><input type="text" class="form-control" /></div>
       </div>
       <button type="" class="btn btn-primary float-right">Salvar</button>
+      <a class="btn btn-secondary float-right" @click="$router.go(-1)">Voltar</a>
     </form>
   </div>
 </template>
