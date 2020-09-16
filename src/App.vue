@@ -1,7 +1,9 @@
 <template lang="html">
   <div id="app">
     <Navegacao />
-    <router-view @salvar="salvar"></router-view>
+    <router-view @salvarConteudo="salvarConteudo"
+     @salvarConteudoRelacionado="salvarConteudoRelacionado">
+    </router-view>
   </div>
 </template>
 
@@ -16,7 +18,7 @@
             Navegacao,
         },
         methods: {
-            salvar (value) {
+            salvarConteudo (value) {
                 firebase.conteudos
                     .add(value)
                     .then(() => {
@@ -27,6 +29,17 @@
                         console.error("Erro ao salvar conteúdo: ", error);
                     });
             },
+            salvarConteudoRelacionado (value) {
+                firebase.conteudosRelacionados
+                    .add(value)
+                    .then(() => {
+                        alert(`Conteúdo relacionado "${value.tema}" salvo!`);
+                        this.$router.push("conteudos-relacionados");
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao salvar conteúdo: ", error);
+                    });
+            }
         },
     };
 </script>
