@@ -62,7 +62,7 @@
         },
         methods: {
             salvar () {
-                this.$emit("salvar", this.conteudoAtual);
+                this.$emit("salvarConteudo", this.conteudoAtual);
             },
         },
     };
