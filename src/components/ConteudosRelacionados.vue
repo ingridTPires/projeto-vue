@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="container">
     <li class="collection-item" v-for="conteudoRelacionado in conteudosRelacionados" :key="conteudoRelacionado.id">
-        {{conteudoRelacionado.conteudo}}
+        {{conteudoRelacionado.tema}}
     </li>
     <button class="btn btn-primary float-right" @click="$router.push('conteudo-relacionado')">Adicionar</button>
   </div>
@@ -17,7 +17,7 @@
             return {
                 conteudosRelacionados: [],
                 conteudoRelacionado: {
-                    conteudo: ""
+                    tema: ""
                 }
             };
         },
