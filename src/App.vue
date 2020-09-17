@@ -36,7 +36,7 @@
                         relacionados: firebase.firestore.FieldValue.arrayUnion(value)
                     }).then(() => {
                         alert(`Conteúdo relacionado "${value}" adicionado!`);
-                        this.$router.push("conteudos-relacionados");
+                        this.$router.push("conteudos");
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);

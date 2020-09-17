@@ -2,7 +2,6 @@
     <div class="barraNav">
         <nav>
             <router-link to="/conteudos">Conteúdos</router-link>
-            <router-link to="/conteudos-relacionados">Relacionados</router-link>
         </nav>
     </div>
 </template>
