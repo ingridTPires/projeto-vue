@@ -3,7 +3,9 @@
        <ul>
             <li class="collection-item" v-for="conteudo in conteudos" :key="conteudo.id">
                 {{conteudo.titulo}}
-                <a class="float-right" href="#/conteudo-relacionado">Add relacionado</a>
+                <router-link :to="{ name: 'Conteúdo Relacionado', params: {id: conteudo.id } }" class="float-right">
+                    Add relacionado
+                </router-link>
                 <ul>
                     <li v-for="relacionado in conteudo.relacionados" :key="relacionado">
                         {{ relacionado }}

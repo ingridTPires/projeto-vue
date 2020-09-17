@@ -8,7 +8,7 @@
         <div class="col-sm-8"><input type="text" class="form-control" v-model="relacionado" /></div>
       </div>
       <button type="submit" class="btn btn-primary float-right">Salvar</button>
-      <a class="btn btn-secondary float-right" @click="$router.go(-1)">Voltar</a>
+      <a class="btn btn-secondary float-right" @click="$router.go(-2)">Voltar</a>
     </form>
   </div>
 </template>
@@ -24,7 +24,8 @@
         },
         methods: {
             adicionar () {
-                this.$emit("adicionarRelacionado", this.relacionado);
+                var id = this.$route.params.id;
+                this.$emit("adicionarRelacionado", id, this.relacionado);
             },
         },
     };
