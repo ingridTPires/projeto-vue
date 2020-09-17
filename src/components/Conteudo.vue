@@ -9,7 +9,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="conteudoAtual.titulo"
+            v-model="conteudo.titulo"
           />
         </div>
       </div>
@@ -19,7 +19,7 @@
           <input
             type="text"
             class="form-control"
-            v-model="conteudoAtual.autor"
+            v-model="conteudo.autor"
           />
         </div>
       </div>
@@ -29,14 +29,14 @@
           <input
             type="text"
             class="form-control"
-            v-model="conteudoAtual.assunto"
+            v-model="conteudo.assunto"
           />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 ">URL:</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" v-model="conteudoAtual.url" />
+          <input type="text" class="form-control" v-model="conteudo.url" />
         </div>
       </div>
       <button type="submit" class="btn btn-primary float-right">Salvar</button>
@@ -48,21 +48,21 @@
 <script>
     export default {
         props: {
-            conteudo: {
-                titulo: "",
-                autor: "",
-                assunto: "",
-                url: "",
-            },
         },
         data () {
             return {
-                conteudoAtual: { ...this.conteudo },
-            };
+                conteudo: {
+                    titulo: '',
+                    autor: '',
+                    assunto: '',
+                    url: '',
+                    relacionados: []
+                }
+            }
         },
         methods: {
             salvar () {
-                this.$emit("salvarConteudo", this.conteudoAtual);
+                this.$emit("salvarConteudo", this.conteudo);
             },
         },
     };

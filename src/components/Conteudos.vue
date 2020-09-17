@@ -1,8 +1,20 @@
 <template lang="html">
   <div class="container">
-    <li class="collection-item" v-for="conteudo in conteudos" :key="conteudo.id">
-        {{conteudo.titulo}}
-    </li>
+       <ul>
+            <li class="collection-item" v-for="conteudo in conteudos" :key="conteudo.id">
+                {{conteudo.titulo}}
+                <router-link :to="{ name: 'Conteúdo Relacionado', params: {id: conteudo.id } }" class="float-right">
+                    Add relacionado
+                </router-link>
+                <ul>
+                    <li v-for="relacionado in conteudo.relacionados" :key="relacionado">
+                        {{ relacionado }}
+                    </li>
+                </ul>   
+                <hr />         
+            </li>
+        </ul>
+        
     <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
   </div>
 </template>

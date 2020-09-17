@@ -2,7 +2,7 @@
   <div id="app">
     <Navegacao />
     <router-view @salvarConteudo="salvarConteudo"
-     @salvarConteudoRelacionado="salvarConteudoRelacionado">
+     @adicionarRelacionado="adicionarRelacionado">
     </router-view>
   </div>
 </template>
@@ -10,7 +10,8 @@
 <script>
     import Navegacao from "./components/Navegacao";
     import "bootstrap/dist/css/bootstrap.min.css";
-    import firebase from "./firebaseConfig";
+    import firebaseConfig from "./firebaseConfig";
+    import * as firebase from "firebase";
 
     export default {
         name: "App",
@@ -19,7 +20,7 @@
         },
         methods: {
             salvarConteudo (value) {
-                firebase.conteudos
+                firebaseConfig.conteudos
                     .add(value)
                     .then(() => {
                         alert(`Conteúdo "${value.titulo}" salvo!`);
@@ -29,12 +30,13 @@
                         console.error("Erro ao salvar conteúdo: ", error);
                     });
             },
-            salvarConteudoRelacionado (value) {
-                firebase.conteudosRelacionados
-                    .add(value)
-                    .then(() => {
-                        alert(`Conteúdo relacionado "${value.tema}" salvo!`);
-                        this.$router.push("conteudos-relacionados");
+            adicionarRelacionado (id, value) {
+                firebaseConfig.conteudos.doc(id)
+                    .update({
+                        relacionados: firebase.firestore.FieldValue.arrayUnion(value)
+                    }).then(() => {
+                        alert(`Conteúdo relacionado "${value}" adicionado!`);
+                        this.$router.push('conteudos');
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);

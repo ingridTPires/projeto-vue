@@ -11,22 +11,22 @@ export default new Router({
   routes: [
     {
       path: "/conteudos",
-      nome: "Conteúdos",
+      name: "Conteúdos",
       component: Conteudos,
     },
     {
       path: "/conteudo",
-      nome: "Conteúdo",
+      name: "Conteúdo",
       component: Conteudo,
     },
     {
-      path: "/conteudo-relacionado",
-      nome: "Conteúdo Relacionado",
+      path: "/conteudo-relacionado/:id",
+      name: "Conteúdo Relacionado",
       component: ConteudoRelacionado,
     },
     {
       path: "/conteudos-relacionados",
-      nome: "Conteúdos Relacionados",
+      name: "Conteúdos Relacionados",
       component: ConteudosRelacionados,
     },
   ],
