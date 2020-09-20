@@ -48,7 +48,7 @@
 
 <style>
     .container {
-        width: 40%;
+        width: 80%;
         margin: 20px auto 0px auto;
     }
 </style>

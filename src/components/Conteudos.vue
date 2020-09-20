@@ -1,20 +1,26 @@
 <template lang="html">
   <div class="container">
-       <ul>
-            <li class="collection-item" v-for="conteudo in conteudos" :key="conteudo.id">
-                {{conteudo.titulo}}
-                <router-link :to="{ name: 'Conteúdo Relacionado', params: {id: conteudo.id } }" class="float-right">
-                    Add relacionado
-                </router-link>
-                <ul>
-                    <li v-for="relacionado in conteudo.relacionados" :key="relacionado">
-                        {{ relacionado }}
-                    </li>
-                </ul>   
-                <hr />         
-            </li>
-        </ul>
-        
+       <div>
+        <b-table :items="conteudos" :fields="fields" responsive="sm">
+            <template v-slot:cell(show_details)="row">
+                <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+                    {{ row.detailsShowing ? 'ʌ' : 'v'}}
+                </b-button>
+            </template>
+
+            <template v-slot:row-details="row">
+    <b-card>
+        <b-row class="mb-2" v-for="relacionado in row.item.relacionados" :key="relacionado">
+            <b-col>{{ relacionado }}</b-col>
+        </b-row>
+        <b-col v-if="row.item.relacionados.length === 0">Nenhum tema relacionado</b-col>
+        <router-link :to="{ name: 'Conteúdo Relacionado', params: {id: conteudo.id } }" class="float-right">
+            Add relacionado
+        </router-link>
+    </b-card>
+</template>
+        </b-table>
+    </div>       
     <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
   </div>
 </template>
@@ -27,10 +33,8 @@
         },
         data () {
             return {
-                conteudos: [],
-                conteudo: {
-                    titulo: ""
-                }
+                fields: ['show_details', 'titulo'],
+                conteudos: []
             };
         },
         created () {
@@ -45,7 +49,11 @@
                     snap.forEach(doc => {
                         var conteudo = doc.data();
                         conteudo.id = doc.id;
+                        this.conteudo = conteudo;
+
+                        conteudo['isActive'] = true;
                         this.conteudos.push(conteudo);
+
                     });
                 });
             }
