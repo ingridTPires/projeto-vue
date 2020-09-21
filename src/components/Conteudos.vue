@@ -25,7 +25,7 @@
 
 <template v-slot:cell(lido)="row">
     <b-form-group>
-        <input type="checkbox" v-model="row.item.lido" />
+        <input type="checkbox" v-model="row.item.lido" @click.prevent="teste($event, row.item.id)" :disabled="row.item.lido" />
     </b-form-group>
 </template>
         </b-table>
@@ -64,6 +64,11 @@
 
                     });
                 });
+            },
+            teste (event, id) {
+                if (!confirm('Leitura finalizada?')) return event.prevent;
+
+                this.$emit("marcarLido", id);
             }
         }
     };

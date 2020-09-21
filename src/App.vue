@@ -2,7 +2,8 @@
   <div id="app">
     <Navegacao />
     <router-view @salvarConteudo="salvarConteudo"
-     @adicionarRelacionado="adicionarRelacionado">
+     @adicionarRelacionado="adicionarRelacionado"
+     @marcarLido="marcarLido">
     </router-view>
   </div>
 </template>
@@ -40,6 +41,15 @@
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);
+                    });
+            },
+            marcarLido (id) {
+                firebaseConfig.conteudos.doc(id)
+                    .update({
+                        lido: true
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao marcar conteúdo como lido: ", error);
                     });
             }
         },
