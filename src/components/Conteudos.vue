@@ -1,15 +1,17 @@
 <template lang="html">
   <div class="container">
-       <div>
         <b-table :items="conteudos" :fields="fields" responsive="sm">
+            
             <template v-slot:cell(show_details)="row">
+                
                 <b-button size="sm" @click="row.toggleDetails" class="mr-2">
                     {{ row.detailsShowing ? 'ʌ' : 'v'}}
                 </b-button>
             </template>
-
-            <template v-slot:row-details="row">
+            
+             <template v-slot:row-details="row">
     <b-card>
+
         <b-row class="mb-2" v-for="relacionado in row.item.relacionados" :key="relacionado">
             <b-col>{{ relacionado }}</b-col>
         </b-row>
@@ -18,9 +20,15 @@
             Add relacionado
         </router-link>
     </b-card>
+
+</template>  
+
+<template v-slot:cell(lido)="row">
+    <b-form-group>
+        <input type="checkbox" v-model="row.item.lido" />
+    </b-form-group>
 </template>
         </b-table>
-    </div>       
     <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
   </div>
 </template>
@@ -33,7 +41,7 @@
         },
         data () {
             return {
-                fields: ['show_details', 'titulo'],
+                fields: ['show_details', 'titulo', 'lido'],
                 conteudos: []
             };
         },
