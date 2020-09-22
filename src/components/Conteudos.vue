@@ -16,9 +16,8 @@
             <b-col>{{ relacionado }}</b-col>
         </b-row>
         <b-col v-if="row.item.relacionados.length === 0">Nenhum tema relacionado</b-col>
-        <router-link :to="{ name: 'Conteúdo Relacionado', params: {id: conteudo.id } }" class="float-right">
-            Add relacionado
-        </router-link>
+        <conteudo-relacionado-modal ref="modal" @adicionarRelacionado="adicionarRelacionado"></conteudo-relacionado-modal>
+        <b-link v-b-modal.modal-prevent-closing class="float-right" @click.prevent="conteudoSelect = row.item.id">Add Relacionados</b-link>
     </b-card>
 
 </template>  
@@ -35,14 +34,17 @@
 
 <script>
     import firebase from "../firebaseConfig";
+    import ConteudoRelacionadoModal from "./ConteudoRelacionadoModal";
 
     export default {
+        components: { ConteudoRelacionadoModal },
         props: {
         },
         data () {
             return {
                 fields: ['show_details', 'titulo', 'lido'],
-                conteudos: []
+                conteudos: [],
+                conteudoSelect: ''
             };
         },
         created () {
@@ -69,6 +71,10 @@
                 if (!confirm('Leitura finalizada?')) return event.prevent;
 
                 this.$emit("marcarLido", id);
+            },
+            adicionarRelacionado (value) {
+                this.$emit("adicionarRelacionado", this.conteudoSelect, value);
+                this.conteudoSelect = '';
             }
         }
     };
