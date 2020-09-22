@@ -40,6 +40,10 @@
                 this.relacionados = []
             },
             submit () {
+
+                this.$emit("adicionarRelacionado", this.relacionados);
+                this.relacionados = [];
+
                 this.$nextTick(() => {
                     this.$bvModal.hide('modal-prevent-closing')
                 })
