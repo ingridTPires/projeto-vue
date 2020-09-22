@@ -34,10 +34,9 @@
             adicionarRelacionado (id, value) {
                 firebaseConfig.conteudos.doc(id)
                     .update({
-                        relacionados: firebase.firestore.FieldValue.arrayUnion(value)
+                        relacionados: firebase.firestore.FieldValue.arrayUnion(...value)
                     }).then(() => {
                         alert(`Conteúdo relacionado "${value}" adicionado!`);
-                        this.$router.push('conteudos');
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);
