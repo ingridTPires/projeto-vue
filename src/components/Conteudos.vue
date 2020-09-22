@@ -16,9 +16,8 @@
             <b-col>{{ relacionado }}</b-col>
         </b-row>
         <b-col v-if="row.item.relacionados.length === 0">Nenhum tema relacionado</b-col>
-        <router-link :to="{ name: 'Conteúdo Relacionado', params: {id: conteudo.id } }" class="float-right">
-            Add relacionado
-        </router-link>
+        <conteudo-relacionado-modal ref="modal"></conteudo-relacionado-modal>
+        <b-link v-b-modal.modal-prevent-closing class="float-right">Add Relacionados</b-link>
     </b-card>
 
 </template>  
@@ -35,8 +34,10 @@
 
 <script>
     import firebase from "../firebaseConfig";
+    import ConteudoRelacionadoModal from "./ConteudoRelacionadoModal";
 
     export default {
+        components: { ConteudoRelacionadoModal },
         props: {
         },
         data () {
