@@ -19,7 +19,9 @@
 
             <div class="mt-3">
                 <ul class="mb-0 pl-3">
-                    <li v-for="relacionado in relacionados" :key="relacionado">{{ relacionado }}</li>
+                    <li v-for="relacionado in relacionados" :key="relacionado.tema">
+                        {{ relacionado.tema }}
+                    </li>
                 </ul>
             </div>
         </form>
@@ -49,7 +51,7 @@
                 })
             },
             add () {
-                this.relacionados.push(this.relacionado);
+                this.relacionados.push({ tema: this.relacionado, lido: false });
                 this.relacionado = '';
             }
         }

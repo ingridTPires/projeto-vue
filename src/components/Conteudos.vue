@@ -11,9 +11,11 @@
             
              <template v-slot:row-details="row">
     <b-card>
-
-        <b-row class="mb-2" v-for="relacionado in row.item.relacionados" :key="relacionado">
-            <b-col>{{ relacionado }}</b-col>
+        <b-row class="mb-2" v-for="relacionado in row.item.relacionados" :key="relacionado.tema">
+            <b-col class="col-sm-1">
+                <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" :disabled="relacionado.lido" />
+            </b-col>
+            <b-col>{{ relacionado.tema }}</b-col>
         </b-row>
         <b-col v-if="row.item.relacionados.length === 0">Nenhum tema relacionado</b-col>
         <conteudo-relacionado-modal ref="modal" @adicionarRelacionado="adicionarRelacionado"></conteudo-relacionado-modal>
