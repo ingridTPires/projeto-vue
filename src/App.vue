@@ -2,6 +2,7 @@
   <div id="app">
     <Navegacao />
     <router-view @salvarConteudo="salvarConteudo"
+    @editarConteudo="editarConteudo"
      @adicionarRelacionado="adicionarRelacionado"
      @marcarLido="marcarLido">
     </router-view>
@@ -29,6 +30,17 @@
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);
+                    });
+            },
+            editarConteudo (id, value) {
+                firebaseConfig.conteudos.doc(id)
+                    .update(value)
+                    .then(() => {
+                        alert(`Conteúdo "${value.titulo}" editado!`);
+                        this.$router.push("/conteudos");
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao editar conteúdo: ", error);
                     });
             },
             adicionarRelacionado (id, value) {

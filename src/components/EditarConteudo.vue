@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="container">
     <form @submit.prevent="editar()">
-      <h2>Registro de conteúdo</h2>
+      <h2>Edição de conteúdo</h2>
       <br />
       <div class="form-group row">
         <label class="col-sm-2 ">Título:</label>
@@ -75,7 +75,8 @@
         },
         methods: {
             editar () {
-                this.$emit("editarConteudo", this.conteudo);
+                var id = this.$route.params.id;
+                this.$emit("editarConteudo", id, this.conteudo);
             },
         },
     };
