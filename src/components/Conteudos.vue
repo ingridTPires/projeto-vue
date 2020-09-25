@@ -27,6 +27,13 @@
         <input type="checkbox" v-model="row.item.lido" @click.prevent="marcarLido($event, row.item.id)" :disabled="row.item.lido" />
     </b-form-group>
 </template>
+
+<template v-slot:cell(editar)="row">
+    <router-link :to="{ name: 'Editar Conteúdo', params: {id: row.item.id } }" class="float-right">
+        Editar
+    </router-link>
+</template>
+
         </b-table>
     <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
   </div>
@@ -42,7 +49,7 @@
         },
         data () {
             return {
-                fields: ['show_details', 'titulo', 'lido'],
+                fields: ['show_details', 'titulo', 'lido', 'editar'],
                 conteudos: [],
                 conteudoSelect: ''
             };
