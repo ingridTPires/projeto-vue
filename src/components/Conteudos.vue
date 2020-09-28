@@ -15,7 +15,10 @@
             <b-col class="col-sm-1">
                 <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" :disabled="relacionado.lido" />
             </b-col>
-            <b-col>{{ relacionado.tema }}</b-col>
+            <b-col class="col-sm-1">{{ relacionado.tema }}</b-col>
+            <b-col>
+                <b-link @click="removerRelacionado(row.item.id, relacionado)"> excluir </b-link>
+            </b-col>
         </b-row>
         <b-col v-if="row.item.relacionados.length === 0">Nenhum tema relacionado</b-col>
         <conteudo-relacionado-modal ref="modal" @adicionarRelacionado="adicionarRelacionado"></conteudo-relacionado-modal>
@@ -84,6 +87,9 @@
             adicionarRelacionado (value) {
                 this.$emit("adicionarRelacionado", this.conteudoSelect, value);
                 this.conteudoSelect = '';
+            },
+            removerRelacionado (id, value) {
+                this.$emit("removerRelacionado", id, value);
             }
         }
     };
