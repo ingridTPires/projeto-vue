@@ -4,7 +4,8 @@
     <router-view @salvarConteudo="salvarConteudo"
     @editarConteudo="editarConteudo"
      @adicionarRelacionado="adicionarRelacionado"
-     @marcarLido="marcarLido">
+     @marcarLido="marcarLido"
+     @removerRelacionado="removerRelacionado">
     </router-view>
   </div>
 </template>
@@ -61,6 +62,15 @@
                     })
                     .catch((error) => {
                         console.error("Erro ao marcar conteúdo como lido: ", error);
+                    });
+            },
+            removerRelacionado (id, value) {
+                firebaseConfig.conteudos.doc(id)
+                    .update({
+                        relacionados: firebase.firestore.FieldValue.arrayRemove(value)
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao remover conteúdo relacionado: ", error);
                     });
             }
         },
