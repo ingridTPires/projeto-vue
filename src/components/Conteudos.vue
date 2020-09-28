@@ -15,7 +15,7 @@
             <b-col class="col-sm-1">
                 <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" :disabled="relacionado.lido" />
             </b-col>
-            <b-col class="col-sm-1">{{ relacionado.tema }}</b-col>
+            <b-col class="col-sm-4">{{ relacionado.tema }}</b-col>
             <b-col>
                 <b-link @click="removerRelacionado(row.item.id, relacionado)"> excluir </b-link>
             </b-col>
