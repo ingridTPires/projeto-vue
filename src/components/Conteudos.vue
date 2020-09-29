@@ -63,23 +63,18 @@
             this.getConteudos();
         },
         methods: {
-            async getConteudos () {
-                var conteudosRef = await firebase.conteudos;
+            async getConteudos () {                
+                firebase.conteudos.where('finalizado', '==', false).get()
+                    .then(querySnapshot => {
+                        querySnapshot.forEach(doc => {
+                            var conteudo = doc.data();
+                            conteudo.id = doc.id;
+                            this.conteudo = conteudo;
 
-                conteudosRef.onSnapshot(snap => {
-                    this.conteudos = [];
-                    snap.forEach(doc => {
-                        var conteudo = doc.data();
-                        if (conteudo.finalizado) return;
-
-                        conteudo.id = doc.id;
-                        this.conteudo = conteudo;
-
-                        conteudo['isActive'] = true;
-                        this.conteudos.push(conteudo);
-
-                    });
-                });
+                            conteudo['isActive'] = true;
+                            this.conteudos.push(conteudo);
+                        })
+                    })
             },
             marcarLido (event, id) {
 
