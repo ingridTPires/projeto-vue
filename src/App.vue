@@ -5,7 +5,8 @@
     @editarConteudo="editarConteudo"
      @adicionarRelacionado="adicionarRelacionado"
      @marcarLido="marcarLido"
-     @removerRelacionado="removerRelacionado">
+     @removerRelacionado="removerRelacionado"
+     @marcarRelacionadoLido="marcarRelacionadoLido">
     </router-view>
   </div>
 </template>
@@ -20,6 +21,11 @@
         name: "App",
         components: {
             Navegacao,
+        },
+        data () {
+            return {
+                conteudo: {}
+            }
         },
         methods: {
             salvarConteudo (value) {
@@ -49,7 +55,7 @@
                     .update({
                         relacionados: firebase.firestore.FieldValue.arrayUnion(...value)
                     }).then(() => {
-                        alert(`Conteúdo relacionado "${value}" adicionado!`);
+                        alert(`Conteúdos relacionados adicionados!`);
                     })
                     .catch((error) => {
                         console.error("Erro ao salvar conteúdo: ", error);
@@ -72,6 +78,29 @@
                     .catch((error) => {
                         console.error("Erro ao remover conteúdo relacionado: ", error);
                     });
+            },
+            marcarRelacionadoLido (id, value) {
+                var docRef = firebaseConfig.conteudos.doc(id);
+
+                docRef.get()
+                    .then(doc => {
+                        this.conteudo = doc.data()
+                        this.atualizarRelacionadoLido(value)
+
+                        docRef.update({
+                            relacionados: this.conteudo.relacionados
+                        });
+                        this.conteudo = {}
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao marcar conteúdo relacionado como lido: ", error);
+                    });
+            },
+            atualizarRelacionadoLido (relacionado) {
+                this.conteudo.relacionados.forEach(self => {
+                    if (self.tema === relacionado.tema)
+                        self.lido = true
+                })
             }
         },
     };

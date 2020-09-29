@@ -11,9 +11,11 @@
             
              <template v-slot:row-details="row">
     <b-card>
-
-        <b-row class="mb-2" v-for="relacionado in row.item.relacionados" :key="relacionado">
-            <b-col class="col-sm-1">{{ relacionado }}</b-col>
+        <b-row class="mb-2" v-for="relacionado in row.item.relacionados" :key="relacionado.tema">
+            <b-col class="col-sm-1">
+                <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" @click.prevent="marcarRelacionadoLido(row.item.id, relacionado)" :disabled="relacionado.lido" />
+            </b-col>
+            <b-col class="col-sm-4">{{ relacionado.tema }}</b-col>
             <b-col>
                 <b-link @click="removerRelacionado(row.item.id, relacionado)"> excluir </b-link>
             </b-col>
@@ -88,6 +90,9 @@
             },
             removerRelacionado (id, value) {
                 this.$emit("removerRelacionado", id, value);
+            },
+            marcarRelacionadoLido (id, value){
+                this.$emit("marcarRelacionadoLido", id, value);
             }
         }
     };
