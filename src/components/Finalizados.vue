@@ -48,15 +48,15 @@
         },
         methods: {
             async getConteudos () {
-                firebase.conteudos.where('finalizado', '==', true).get()
-                    .then(querySnapshot => {
-                        querySnapshot.forEach(doc => {
-                            var conteudo = doc.data();
-                            conteudo.id = doc.id;
+                var conteudosRef = await firebase.conteudos.where('finalizado', '==', true);
+                conteudosRef.onSnapshot(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        var conteudo = doc.data();
+                        conteudo.id = doc.id;
 
-                            this.conteudos.push(conteudo);
-                        })
-                    })
+                        this.conteudos.push(conteudo);
+                    });
+                });
             }
         }
     };

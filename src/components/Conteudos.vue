@@ -63,24 +63,25 @@
             this.getConteudos();
         },
         methods: {
-            async getConteudos () {                
-                firebase.conteudos.where('finalizado', '==', false).get()
-                    .then(querySnapshot => {
-                        querySnapshot.forEach(doc => {
-                            var conteudo = doc.data();
-                            conteudo.id = doc.id;
-                            this.conteudo = conteudo;
+            async getConteudos () {
+                var conteudosRef = await firebase.conteudos.where('finalizado', '==', false);
+                conteudosRef.onSnapshot(snapshot => {
+                    this.conteudos = [];
+                    snapshot.forEach(doc => {
+                        var conteudo = doc.data();
+                        conteudo.id = doc.id;
+                        this.conteudo = conteudo;
 
-                            conteudo['isActive'] = true;
-                            this.conteudos.push(conteudo);
-                        })
-                    })
+                        conteudo['isActive'] = true;
+                        this.conteudos.push(conteudo);
+                    });
+                });
             },
             marcarLido (event, id) {
 
                 var self = this.conteudos.find(item => item.id === id);
                 var finalizado = self.relacionados.every((item) => item.lido);
-                var texto = finalizado ? 'O conteúdo foi completo. Deseja continuar a finalização?' : 'Leitura finalizada?';
+                var texto = finalizado ? 'O conteúdo está completo. Deseja continuar a finalização?' : 'Leitura finalizada?';
 
                 if (!confirm(texto)) return event.prevent;
 
