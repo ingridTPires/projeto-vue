@@ -2,6 +2,7 @@
     <div class="barraNav">
         <nav>
             <router-link to="/conteudos">Conteúdos</router-link>
+            <router-link to="/conteudos-finalizados">Conteúdos Finalizados</router-link>
         </nav>
     </div>
 </template>

@@ -64,25 +64,28 @@
         },
         methods: {
             async getConteudos () {
-                var conteudosRef = await firebase.conteudos;
-
-                conteudosRef.onSnapshot(snap => {
+                var conteudosRef = await firebase.conteudos.where('finalizado', '==', false);
+                conteudosRef.onSnapshot(snapshot => {
                     this.conteudos = [];
-                    snap.forEach(doc => {
+                    snapshot.forEach(doc => {
                         var conteudo = doc.data();
                         conteudo.id = doc.id;
                         this.conteudo = conteudo;
 
                         conteudo['isActive'] = true;
                         this.conteudos.push(conteudo);
-
                     });
                 });
             },
             marcarLido (event, id) {
-                if (!confirm('Leitura finalizada?')) return event.prevent;
 
-                this.$emit("marcarLido", id);
+                var self = this.conteudos.find(item => item.id === id);
+                var finalizado = self.relacionados.every((item) => item.lido);
+                var texto = finalizado ? 'O conteúdo está completo. Deseja continuar a finalização?' : 'Leitura finalizada?';
+
+                if (!confirm(texto)) return event.prevent;
+
+                this.$emit("marcarLido", id, finalizado);
             },
             adicionarRelacionado (value) {
                 this.$emit("adicionarRelacionado", this.conteudoSelect, value);
@@ -91,7 +94,7 @@
             removerRelacionado (id, value) {
                 this.$emit("removerRelacionado", id, value);
             },
-            marcarRelacionadoLido (id, value){
+            marcarRelacionadoLido (id, value) {
                 this.$emit("marcarRelacionadoLido", id, value);
             }
         }

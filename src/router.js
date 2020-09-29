@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Conteudos from "./components/Conteudos.vue";
-import Conteudo from "./components/Conteudo.vue";
-import ConteudosRelacionados from "./components/ConteudosRelacionados.vue";
-import EditarConteudo from "./components/EditarConteudo.vue";
+import Conteudos from "./components/Conteudos";
+import Conteudo from "./components/Conteudo";
+import ConteudosRelacionados from "./components/ConteudosRelacionados";
+import EditarConteudo from "./components/EditarConteudo";
+import Finalizados from "./components/Finalizados";
 
 Vue.use(Router);
 
@@ -29,5 +30,10 @@ export default new Router({
       name: "Editar Conteúdo",
       component: EditarConteudo,
     },
+    {
+        path: "/conteudos-finalizados",
+        name: "Conteúdos Finalizados",
+        component: Finalizados,
+      }
   ],
 });
