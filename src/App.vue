@@ -61,10 +61,11 @@
                         console.error("Erro ao salvar conteúdo: ", error);
                     });
             },
-            marcarLido (id) {
+            marcarLido (id, finalizado) {
                 firebaseConfig.conteudos.doc(id)
                     .update({
-                        lido: true
+                        lido: true,
+                        finalizado: finalizado
                     })
                     .catch((error) => {
                         console.error("Erro ao marcar conteúdo como lido: ", error);

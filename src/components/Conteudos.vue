@@ -82,9 +82,14 @@
                 });
             },
             marcarLido (event, id) {
-                if (!confirm('Leitura finalizada?')) return event.prevent;
 
-                this.$emit("marcarLido", id);
+                var self = this.conteudos.find(item => item.id === id);
+                var finalizado = self.relacionados.every((item) => item.lido);
+                var texto = finalizado ? 'O conteúdo foi completo. Deseja continuar a finalização?' : 'Leitura finalizada?';
+
+                if (!confirm(texto)) return event.prevent;
+
+                this.$emit("marcarLido", id, finalizado);
             },
             adicionarRelacionado (value) {
                 this.$emit("adicionarRelacionado", this.conteudoSelect, value);
@@ -93,7 +98,7 @@
             removerRelacionado (id, value) {
                 this.$emit("removerRelacionado", id, value);
             },
-            marcarRelacionadoLido (id, value){
+            marcarRelacionadoLido (id, value) {
                 this.$emit("marcarRelacionadoLido", id, value);
             }
         }
