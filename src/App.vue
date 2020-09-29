@@ -88,8 +88,14 @@
                         this.conteudo = doc.data()
                         this.atualizarRelacionadoLido(value)
 
+                        var finalizado = this.conteudo.relacionados.every((item) => item.lido) && this.conteudo.lido;
+
+                        if (finalizado && !confirm('O conteúdo foi completo. Deseja continuar a finalização?'))
+                            return;
+
                         docRef.update({
-                            relacionados: this.conteudo.relacionados
+                            relacionados: this.conteudo.relacionados,
+                            finalizado: finalizado
                         });
                         this.conteudo = {}
                     })
