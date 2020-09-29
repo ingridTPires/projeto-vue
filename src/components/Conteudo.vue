@@ -57,6 +57,7 @@
                     assunto: '',
                     url: '',
                     lido: false,
+                    finalizado: false,
                     relacionados: []
                 }
             }

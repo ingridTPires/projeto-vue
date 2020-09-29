@@ -70,6 +70,8 @@
                     this.conteudos = [];
                     snap.forEach(doc => {
                         var conteudo = doc.data();
+                        if (conteudo.finalizado) return;
+
                         conteudo.id = doc.id;
                         this.conteudo = conteudo;
 
