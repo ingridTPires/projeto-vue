@@ -27,6 +27,10 @@
 
 </template>  
 
+<template v-slot:cell(finalizarAte)="row">
+    {{ new Date(row.item.finalizarAte+"T00:00:00").toLocaleDateString() }}
+</template>
+
 <template v-slot:cell(lido)="row">
     <b-form-group>
         <input type="checkbox" v-model="row.item.lido" @click.prevent="marcarLido($event, row.item.id)" :disabled="row.item.lido" />
