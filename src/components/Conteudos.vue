@@ -54,7 +54,7 @@
         },
         data () {
             return {
-                fields: ['show_details', 'titulo', 'lido', 'editar'],
+                fields: ['show_details', 'titulo', 'finalizarAte', 'lido', 'editar'],
                 conteudos: [],
                 conteudoSelect: ''
             };

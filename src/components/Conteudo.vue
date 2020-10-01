@@ -39,6 +39,12 @@
           <input type="text" class="form-control" v-model="conteudo.url" />
         </div>
       </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Finalizar leitura até:</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" v-model="conteudo.finalizarAte" />
+            </div>
+        </div>
       <button type="submit" class="btn btn-primary float-right">Salvar</button>
         <a class="btn btn-secondary float-right" @click="$router.go(-1)">Voltar</a>
     </form>
@@ -58,6 +64,7 @@
                     url: '',
                     lido: false,
                     finalizado: false,
+                    finalizarAte: new Date(),
                     relacionados: []
                 }
             }
