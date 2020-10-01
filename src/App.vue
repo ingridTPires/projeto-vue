@@ -65,7 +65,8 @@
                 firebaseConfig.conteudos.doc(id)
                     .update({
                         lido: true,
-                        finalizado: finalizado
+                        finalizado: finalizado,
+                        finalizadoEm: finalizado ? new Date().toISOString().substr(0, 10) : ''
                     })
                     .catch((error) => {
                         console.error("Erro ao marcar conteúdo como lido: ", error);
@@ -95,7 +96,8 @@
 
                         docRef.update({
                             relacionados: this.conteudo.relacionados,
-                            finalizado: finalizado
+                            finalizado: finalizado,
+                            finalizadoEm: finalizado ? new Date().toISOString().substr(0, 10) : ''
                         });
                         this.conteudo = {}
                     })

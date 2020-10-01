@@ -5,6 +5,11 @@
                 v-for="conteudo in conteudos" :key="conteudo.id">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1 text-center">{{ conteudo.titulo }}</h5>
+
+                    <b-badge :variant="conteudo.prazo < 0 ? 'danger' : 'primary'" pill>
+                        <span v-if="conteudo.prazo < 0">Atrazou {{ conteudo.prazo * -1 }} dia(s).</span>
+                        <span v-else>Completa em dia!</span>
+                    </b-badge>
                 </div>
 
                 <b-container class="bv-example-row">
@@ -53,6 +58,7 @@
                     querySnapshot.forEach(doc => {
                         var conteudo = doc.data();
                         conteudo.id = doc.id;
+                        conteudo.prazo = new Date(conteudo.finalizarAte).getDate() - new Date(conteudo.finalizadoEm).getDate();
 
                         this.conteudos.push(conteudo);
                     });
