@@ -14,6 +14,5 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const conteudos = db.collection("conteudos");
-const conteudosRelacionados = db.collection("conteudosRelacionados");
 
-export default { db, conteudos, conteudosRelacionados };
+export default { db, conteudos };

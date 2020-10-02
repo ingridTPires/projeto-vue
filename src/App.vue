@@ -1,14 +1,14 @@
-<template lang="html">
-  <div id="app">
-    <Navegacao />
-    <router-view @salvarConteudo="salvarConteudo"
-    @editarConteudo="editarConteudo"
-     @adicionarRelacionado="adicionarRelacionado"
-     @marcarLido="marcarLido"
-     @removerRelacionado="removerRelacionado"
-     @marcarRelacionadoLido="marcarRelacionadoLido">
-    </router-view>
-  </div>
+<template>
+    <div id="app">
+        <Navegacao />
+        <router-view @salvarConteudo="salvarConteudo"
+            @editarConteudo="editarConteudo"
+            @adicionarRelacionado="adicionarRelacionado"
+            @marcarLido="marcarLido"
+            @removerRelacionado="removerRelacionado"
+            @marcarRelacionadoLido="marcarRelacionadoLido">
+        </router-view>
+    </div>
 </template>
 
 <script>

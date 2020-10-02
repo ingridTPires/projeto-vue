@@ -1,17 +1,16 @@
-<template lang="html">
+<template>
 
     <b-modal
-    id="modal-prevent-closing"
-    ref="modal"
-    title="Adicionar conteúdos relacionados"
-    @show="resetModal"
-    @hidden="resetModal"
-    @ok.prevent="submit()"
-    >
-        <form ref="form" @submit.stop.prevent="submit">                
+        id="modal-prevent-closing"
+        ref="modal"
+        title="Adicionar conteúdos relacionados"
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok.prevent="submit()">
 
+        <form ref="form" @submit.stop.prevent="submit">
             <b-input-group class="mt-3">
-                <b-form-input v-model="relacionado" ></b-form-input>
+                <b-form-input v-model="relacionado"></b-form-input>
                 <b-input-group-append>
                     <b-button variant="info" @click.prevent="add()">Add</b-button>
                 </b-input-group-append>
