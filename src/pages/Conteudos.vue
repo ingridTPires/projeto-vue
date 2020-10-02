@@ -13,13 +13,13 @@
             </template>
 
             <template v-slot:cell(editar)='row'>
-                <b-link v-b-modal.modal-prevent-closing class="float-right" @click.prevent="conteudoSelect = row.item.id">Editar</b-link>
+                <b-link v-b-modal.modal-prevent-closing class="float-right" @click="conteudoSelect = row.item.id">Editar</b-link>
             </template>
 
         </b-table>
         <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
 
-        <editar-conteudo-modal ref="modal"></editar-conteudo-modal>
+        <editar-conteudo-modal ref="modal" :idConteudo="`${conteudoSelect}`"></editar-conteudo-modal>
 
     </div>
 </template>
