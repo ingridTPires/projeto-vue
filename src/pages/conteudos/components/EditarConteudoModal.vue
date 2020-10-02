@@ -57,13 +57,17 @@
                     </div>
                 </div>
 
-                <div class="mt-3">
-                    <ul class="mb-0 pl-3">
-                        <li v-for="relacionado in conteudo.relacionados" :key="relacionado.tema">
-                            {{ relacionado.tema }}
-                        </li>
-                    </ul>
-                </div>
+                <b-row class="mb-2" v-for="relacionado in conteudo.relacionados" :key="relacionado.tema">
+                    <b-col class="col-sm-1">
+                        <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" :disabled="relacionado.lido" />
+                    </b-col>
+                    <b-col class="col-sm-4">{{ relacionado.tema }}</b-col>
+                    <b-col>
+                        <b-link> excluir </b-link>
+                    </b-col>
+                </b-row>
+                <b-col v-if="!conteudo.relacionados || conteudo.relacionados.length === 0">Nenhum tema relacionado</b-col>
+
             </form>
         </b-modal>
     </div>

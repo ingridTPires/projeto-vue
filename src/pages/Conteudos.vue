@@ -68,16 +68,6 @@
 
                 this.$emit("marcarLido", id, finalizado);
             },
-            adicionarRelacionado (value) {
-                this.$emit("adicionarRelacionado", this.conteudoSelect, value);
-                this.conteudoSelect = '';
-            },
-            removerRelacionado (id, value) {
-                this.$emit("removerRelacionado", id, value);
-            },
-            marcarRelacionadoLido (id, value) {
-                this.$emit("marcarRelacionadoLido", id, value);
-            },
             editarConteudo (id, conteudo) {
                 this.$emit("editarConteudo", this.conteudoSelect, conteudo);
             }
