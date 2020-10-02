@@ -12,22 +12,24 @@
                 {{ new Date(row.item.finalizarAte+"T00:00:00").toLocaleDateString() }}
             </template>
 
-            <template v-slot:cell(editar)="row">
-                <router-link :to="{ name: 'Editar Conteúdo', params: {id: row.item.id } }" class="float-right">
-                    Editar
-                </router-link>
+            <template v-slot:cell(editar)='row'>
+                <b-link v-b-modal.modal-prevent-closing class="float-right" @click.prevent="conteudoSelect = row.item.id">Editar</b-link>
             </template>
 
         </b-table>
         <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
+
+        <editar-conteudo-modal ref="modal"></editar-conteudo-modal>
+
     </div>
 </template>
 
 <script>
     import firebase from "../firebaseConfig";
+    import EditarConteudoModal from "./conteudos/components/EditarConteudoModal";
 
     export default {
-        components: {},
+        components: { EditarConteudoModal },
         props: {
         },
         data () {
