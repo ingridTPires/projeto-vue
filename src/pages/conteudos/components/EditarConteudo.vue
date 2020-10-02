@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import firebase from "../firebaseConfig";
+    import firebase from "../../../firebaseConfig";
 
     export default {
         props: {

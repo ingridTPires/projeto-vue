@@ -50,7 +50,7 @@
 
 <script>
     import firebase from "../firebaseConfig";
-    import ConteudoRelacionadoModal from "./ConteudoRelacionadoModal";
+    import ConteudoRelacionadoModal from "./conteudos/components/ConteudoRelacionadoModal";
 
     export default {
         components: { ConteudoRelacionadoModal },

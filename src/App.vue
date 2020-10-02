@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Navegacao from "./components/Navegacao";
+    import Navegacao from "./pages/Navegacao";
     import "bootstrap/dist/css/bootstrap.min.css";
     import firebaseConfig from "./firebaseConfig";
     import * as firebase from "firebase";
