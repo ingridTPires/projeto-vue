@@ -19,7 +19,9 @@
         </b-table>
         <button class="btn btn-primary float-right" @click="$router.push('conteudo')">Adicionar</button>
 
-        <editar-conteudo-modal ref="modal" :idConteudo="`${conteudoSelect}`"></editar-conteudo-modal>
+        <editar-conteudo-modal ref="modal"
+            :idConteudo="`${conteudoSelect}`"
+            @editarConteudo="editarConteudo"></editar-conteudo-modal>
 
     </div>
 </template>
@@ -75,6 +77,9 @@
             },
             marcarRelacionadoLido (id, value) {
                 this.$emit("marcarRelacionadoLido", id, value);
+            },
+            editarConteudo (id, conteudo) {
+                this.$emit("editarConteudo", this.conteudoSelect, conteudo);
             }
         }
     };

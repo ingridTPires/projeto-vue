@@ -6,7 +6,8 @@
             title="Editar conteúdo"
             size="lg"
             @show="show"
-            @hidden="resetModal">
+            @hidden="resetModal"
+            @ok.prevent="submit()">
 
             <form ref="form">
                 <div class="form-group row">
@@ -110,6 +111,15 @@
             addRelacionado () {
                 this.conteudo.relacionados.push({ tema: this.relacionadoInput, lido: false });
                 this.relacionadoInput = '';
+            },
+            submit () {
+                console.log(this.conteudo);
+                this.$emit("editarConteudo", this.idConteudo, this.conteudo);
+                this.conteudo = {};
+
+                this.$nextTick(() => {
+                    this.$bvModal.hide('modal-prevent-closing')
+                })
             }
         },
     };

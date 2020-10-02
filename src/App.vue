@@ -44,7 +44,6 @@
                     .update(value)
                     .then(() => {
                         alert(`Conteúdo "${value.titulo}" editado!`);
-                        this.$router.push("/conteudos");
                     })
                     .catch((error) => {
                         console.error("Erro ao editar conteúdo: ", error);
