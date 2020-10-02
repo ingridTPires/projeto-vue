@@ -59,7 +59,7 @@
 
                 <b-row class="mb-2" v-for="relacionado in conteudo.relacionados" :key="relacionado.tema">
                     <b-col class="col-sm-1">
-                        <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" :disabled="relacionado.lido" />
+                        <input type="checkbox" title="Marcar tema como lido" v-model="relacionado.lido" />
                     </b-col>
                     <b-col class="col-sm-4">{{ relacionado.tema }}</b-col>
                     <b-col>
@@ -108,6 +108,7 @@
                             autor: data.autor,
                             assunto: data.assunto,
                             url: data.url,
+                            lido: data.lido,
                             relacionados: data.relacionados
                         }
                     })
@@ -117,8 +118,17 @@
                 this.relacionadoInput = '';
             },
             submit () {
-                console.log(this.conteudo);
-                this.$emit("editarConteudo", this.idConteudo, this.conteudo);
+                let conteudo = this.conteudo;
+                var finalizado = conteudo.relacionados.every((item) => item.lido) && conteudo.lido;
+
+                if (finalizado) {
+                    if (!confirm("O conteúdo está completo. Deseja continuar a finalização?"))
+                        return;
+                    conteudo.finalizado = true;
+                    conteudo.finalizadoEm = new Date().toISOString().substr(0, 10);
+                }
+
+                this.$emit("editarConteudo", this.idConteudo, conteudo);
                 this.conteudo = {};
 
                 this.$nextTick(() => {
