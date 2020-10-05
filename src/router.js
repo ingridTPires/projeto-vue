@@ -1,10 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Conteudos from "./components/Conteudos";
-import Conteudo from "./components/Conteudo";
-import ConteudosRelacionados from "./components/ConteudosRelacionados";
-import EditarConteudo from "./components/EditarConteudo";
-import Finalizados from "./components/Finalizados";
+import Conteudos from "./pages/Conteudos";
+import Conteudo from "./pages/conteudos/components/Conteudo";
+import Finalizados from "./pages/Finalizados";
 
 Vue.use(Router);
 
@@ -21,19 +19,9 @@ export default new Router({
       component: Conteudo,
     },
     {
-      path: "/conteudos-relacionados",
-      name: "Conteúdos Relacionados",
-      component: ConteudosRelacionados,
+      path: "/conteudos-finalizados",
+      name: "Conteúdos Finalizados",
+      component: Finalizados,
     },
-    {
-      path: "/editar-conteudo/:id",
-      name: "Editar Conteúdo",
-      component: EditarConteudo,
-    },
-    {
-        path: "/conteudos-finalizados",
-        name: "Conteúdos Finalizados",
-        component: Finalizados,
-      }
   ],
 });

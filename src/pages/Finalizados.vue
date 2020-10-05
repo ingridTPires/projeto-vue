@@ -3,6 +3,7 @@
         <b-list-group>
             <b-list-group-item href="#" class="flex-column align-items-start"
                 v-for="conteudo in conteudos" :key="conteudo.id">
+
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1 text-center">{{ conteudo.titulo }}</h5>
 
