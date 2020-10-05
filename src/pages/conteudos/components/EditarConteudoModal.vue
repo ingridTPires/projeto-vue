@@ -63,7 +63,7 @@
                     </b-col>
                     <b-col class="col-sm-4">{{ relacionado.tema }}</b-col>
                     <b-col>
-                        <b-link> excluir </b-link>
+                        <b-link @click="removerRelacionado(relacionado)"> excluir </b-link>
                     </b-col>
                 </b-row>
                 <b-col v-if="!conteudo.relacionados || conteudo.relacionados.length === 0">Nenhum tema relacionado</b-col>
@@ -134,6 +134,10 @@
                 this.$nextTick(() => {
                     this.$bvModal.hide('modal-prevent-closing')
                 })
+            },
+            removerRelacionado (relacionado) {
+                let relacionados = this.conteudo.relacionados;
+                relacionados.splice(relacionados.indexOf(relacionado), 1);
             }
         },
     };
