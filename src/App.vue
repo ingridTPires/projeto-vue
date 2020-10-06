@@ -25,15 +25,7 @@
         },
         methods: {
             salvarConteudo (value) {
-                firebase.conteudos
-                    .add(value)
-                    .then(() => {
-                        alert(`Conteúdo "${value.titulo}" salvo!`);
-                        this.$router.push("conteudos");
-                    })
-                    .catch((error) => {
-                        console.error("Erro ao salvar conteúdo: ", error);
-                    });
+                this.$store.dispatch('salvarConteudoAction', value)
             },
             editarConteudo (id, value) {
                 firebase.conteudos.doc(id)
