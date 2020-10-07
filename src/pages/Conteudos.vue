@@ -27,8 +27,8 @@
 </template>
 
 <script>
-    import firebase from "../firebaseConfig";
     import EditarConteudoModal from "./conteudos/components/EditarConteudoModal";
+    import { mapActions, mapState } from 'vuex';
 
     export default {
         components: { EditarConteudoModal },
@@ -37,7 +37,6 @@
         data () {
             return {
                 fields: ['lido', 'titulo', 'finalizarAte', 'editar'],
-                conteudos: [],
                 conteudoSelect: ''
             };
         },
@@ -45,18 +44,9 @@
             this.getConteudos();
         },
         methods: {
+            ...mapActions(['getConteudosAction']),
             async getConteudos () {
-                var conteudosRef = await firebase.conteudos.where('finalizado', '==', false);
-                conteudosRef.onSnapshot(snapshot => {
-                    this.conteudos = [];
-                    snapshot.forEach(doc => {
-                        var conteudo = doc.data();
-                        conteudo.id = doc.id;
-                        this.conteudo = conteudo;
-
-                        this.conteudos.push(conteudo);
-                    });
-                });
+                await this.getConteudosAction();
             },
             marcarLido (event, id) {
 
@@ -71,6 +61,9 @@
             editarConteudo (id, conteudo) {
                 this.$emit("editarConteudo", this.conteudoSelect, conteudo);
             }
+        },
+        computed: {
+            ...mapState(['conteudos'])
         }
     };
 </script>

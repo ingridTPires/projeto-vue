@@ -2,12 +2,13 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import firebase from "../firebaseConfig";
-import { ADD_CONTEUDOS } from "./mutation-types";
+import { ADD_CONTEUDOS, GET_CONTEUDOS } from "./mutation-types";
 
 Vue.use(Vuex);
 
 const state = () => ({
   conteudo: null,
+  conteudos: [],
 });
 
 const getters = {
@@ -23,6 +24,23 @@ const getters = {
 };
 
 const actions = {
+  async getConteudosAction({ commit }) {
+    var conteudosRef = await firebase.conteudos.where(
+      "finalizado",
+      "==",
+      false
+    );
+    let conteudos = [];
+
+    conteudosRef.onSnapshot((snapshot) => {
+      snapshot.forEach((doc) => {
+        var conteudo = doc.data();
+        conteudo.id = doc.id;
+        conteudos.push(conteudo);
+      });
+    });
+    commit(GET_CONTEUDOS, conteudos);
+  },
   async salvarConteudoAction({ commit }, payload) {
     commit(ADD_CONTEUDOS, "loading");
     await firebase.conteudos
@@ -48,6 +66,9 @@ const mutations = {
   },
   [ADD_CONTEUDOS](state, payload) {
     state.conteudo = payload;
+  },
+  [GET_CONTEUDOS](state, payload) {
+    state.conteudos = payload;
   },
 };
 
