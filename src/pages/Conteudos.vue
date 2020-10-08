@@ -58,8 +58,8 @@
 
                 this.$emit("marcarLido", id, finalizado);
             },
-            editarConteudo (id, conteudo) {
-                this.$emit("editarConteudo", this.conteudoSelect, conteudo);
+            editarConteudo (conteudo) {
+                this.$emit("editarConteudo", conteudo);
             }
         },
         computed: {

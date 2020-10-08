@@ -12,6 +12,7 @@
     import Navegacao from "./pages/Navegacao";
     import "bootstrap/dist/css/bootstrap.min.css";
     import firebase from "./firebaseConfig";
+    import { mapActions } from 'vuex';
 
     export default {
         name: "App",
@@ -24,18 +25,13 @@
             }
         },
         methods: {
+            ...mapActions(['editarConteudoAction']),
             salvarConteudo (value) {
-                this.$store.dispatch('salvarConteudoAction', value)
+                this.$store.dispatch('salvarConteudoAction', value);
+                this.$router.push({ name: 'conteudos' });
             },
-            editarConteudo (id, value) {
-                firebase.conteudos.doc(id)
-                    .update(value)
-                    .then(() => {
-                        alert(`Conteúdo "${value.titulo}" editado!`);
-                    })
-                    .catch((error) => {
-                        console.error("Erro ao editar conteúdo: ", error);
-                    });
+            async editarConteudo (value) {
+                await this.editarConteudoAction(value);
             },
             marcarLido (id, finalizado) {
                 firebase.conteudos.doc(id)

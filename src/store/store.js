@@ -2,7 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import firebase from "../firebaseConfig";
-import { ADD_CONTEUDOS, GET_CONTEUDOS } from "./mutation-types";
+import {
+  ADD_CONTEUDOS,
+  GET_CONTEUDOS,
+  EDITAR_CONTEUDO,
+} from "./mutation-types";
 
 Vue.use(Vuex);
 
@@ -25,14 +29,10 @@ const getters = {
 
 const actions = {
   async getConteudosAction({ commit }) {
-    var conteudosRef = await firebase.conteudos.where(
-      "finalizado",
-      "==",
-      false
-    );
+    let ref = await firebase.conteudos.where("finalizado", "==", false);
     let conteudos = [];
 
-    conteudosRef.onSnapshot((snapshot) => {
+    ref.onSnapshot((snapshot) => {
       snapshot.forEach((doc) => {
         var conteudo = doc.data();
         conteudo.id = doc.id;
@@ -55,6 +55,18 @@ const actions = {
         commit("setError", error.message);
       });
   },
+  editarConteudoAction({ commit }, payload) {
+    firebase.conteudos
+      .doc(payload.id)
+      .update(payload)
+      .then(() => {
+        commit(EDITAR_CONTEUDO, payload);
+        alert(`Conteúdo "${payload.titulo}" editado!`);
+      })
+      .catch((error) => {
+        console.error("Erro ao editar conteúdo: ", error);
+      });
+  },
 };
 
 const mutations = {
@@ -69,6 +81,9 @@ const mutations = {
   },
   [GET_CONTEUDOS](state, payload) {
     state.conteudos = payload;
+  },
+  [EDITAR_CONTEUDO](state, payload) {
+    state.conteudo = payload;
   },
 };
 

@@ -127,8 +127,8 @@
                     conteudo.finalizado = true;
                     conteudo.finalizadoEm = new Date().toISOString().substr(0, 10);
                 }
-
-                this.$emit("editarConteudo", this.idConteudo, conteudo);
+                conteudo.id = this.idConteudo;
+                this.$emit("editarConteudo", conteudo);
                 this.conteudo = {};
 
                 this.$nextTick(() => {
